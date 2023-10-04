@@ -1,0 +1,49 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="container mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Product Image -->
+                        <img src="<%= product.imageUrl %>" class="img-fluid" alt="<%= product.title %>">
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="product-details d-flex justify-content-center">
+                            <div>
+                                <div>
+                                    <!-- Product Name -->
+                                    <h1>
+                                        <%= product.title %>
+                                    </h1>
+                                </div>
+
+
+                                <div>
+                                    <!-- Product Detail -->
+                                    <p>
+                                        <%= product.description %>
+                                    </p>
+
+                                </div>
+
+                                <div>
+                                    <!-- Product Price -->
+                                    <h3>Price: $ <%= product.price %>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <%- include('../includes/add-to-cart.ejs',{product:product}) %>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+            <%- include('../includes/end.ejs') %>

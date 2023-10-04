@@ -1,0 +1,55 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="container">
+                <h1>Product Management</h1>
+                <% if (prods.length> 0) { %>
+
+                    <table id="example" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Image</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let product of prods) {%>
+                                <tr>
+                                    <td>
+                                        <%= product.title ?product.title : 'N/A' %>
+                                    </td>
+                                    <td><img src="<%= product.imageUrl %>" class="card-img-top"
+                                            alt="<%= product.title %>" width="75" height="80"></td>
+                                    <td>
+                                        <%= product.description %>
+                                    </td>
+                                    <td>
+                                        <%= product.price %>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="/admin/edit-product/<%= product.id %>?edit=true"
+                                                class="btn btn-warning btn-sm">Edit</a>
+                                            <form action="/admin/delete-product" method="post">
+                                                <input type="hidden" name="productId" value="<%= product.id %>">
+                                                <button type="submit" style="margin-left: 10px;"
+                                                    class="btn btn-danger btn-sm ">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% }%>
+                        </tbody>
+                    </table>
+                    <% }else { %>
+                        <h1>
+                            No Products Found
+                        </h1>
+                        <% }%>
+            </main>
+            <%- include('../includes/end.ejs') %>

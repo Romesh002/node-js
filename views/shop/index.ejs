@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+    <style>
+        .card-content {
+            width: 300px;
+            /* Adjust the card width as needed */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="container">
+                <h1>Shop</h1>
+                <% if (prods.length> 0) { %>
+                    <div class="row">
+                        <% for(let product of prods) {%>
+                            <div class="col-sm-3">
+                                <div class="card card-content">
+                                    <div class="card-body">
+                                        <div class="card content">
+
+                                            <img src="<%= product.imageUrl %>" class="card-img-top"
+                                                alt="<%= product.title %>" width="90" height="250">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%= product.title ?product.title : 'N/A' %>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <%= product.price %>
+                                                </p>
+                                                <p class="card-text">
+                                                    <%= product.description %>
+                                                </p>
+                                                <div class="d-flex">
+                                                    <a href="/products/<%= product.id %>"
+                                                        class="btn btn-info btn-sm">Details</a>
+                                                    <%- include('../includes/add-to-cart.ejs',{product:product}) %>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }%>
+                    </div>
+
+                    <% }else { %>
+                        <h1>
+                            No Products Found
+                        </h1>
+                        <% }%>
+            </main>
+            <%- include('../includes/end.ejs') %>
