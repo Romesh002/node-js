@@ -1,0 +1,14 @@
+.product-details {
+    /* display: flex; */
+    align-items: center;
+    height: 533px;
+
+}
+
+.text-wrap {
+    overflow: hidden;
+    width: 100px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

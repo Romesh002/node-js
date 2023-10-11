@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "title": "Hammer Headphone",
+        "imageUrl": "https://hammeronline.in/cdn/shop/files/HammerBash2.0Headphones.webp?v=1690436990&width=1080",
+        "description": "This is a bass-boosted headphone powered by hammer.",
+        "price": "1499.99",
+        "created_at": ""
+    },
+    {
+        "id": "2",
+        "title": "Echo Headphone",
+        "imageUrl": "https://hammeronline.in/cdn/shop/files/HammerBash2.0Headphones.webp?v=1690436990&width=1080",
+        "description": "This is a bass-boosted headphone powered by Echo pvt ltd.",
+        "price": "999.00",
+        "created_at": ""
+    },
+    {
+        "id": "3",
+        "title": "JBL",
+        "imageUrl": "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1674045768/Croma%20Assets/Communication/Headphones%20and%20Earphones/Images/239032_0_ogo1io.png?tr=w-640",
+        "description": "This is a bass-boosted headphone powered by hammer.",
+        "price": "1999.00",
+        "created_at": ""
+    },
+    {
+        "id": "4",
+        "title": "Google Headfone",
+        "imageUrl": "https://hammeronline.in/cdn/shop/files/HammerBash2.0Headphones.webp?v=1690436990&width=1080",
+        "description": "Google headphones with extreme bass boosters",
+        "price": "6999.00",
+        "created_at": ""
+    }
+]
