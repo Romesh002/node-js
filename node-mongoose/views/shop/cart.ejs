@@ -13,13 +13,14 @@
                             <li class="list-group-item cart__item mb-3">
                                 <div class="row align-items-center">
                                     <div class="col-md-3">
-                                        <img width="40%" src="<%= p.imageUrl %>" alt="<%= p.title %>" class="img-fluid">
+                                        <img width="40%" src="<%= p.productId.imageUrl %>" alt="<%= p.title %>"
+                                            class="img-fluid">
                                     </div>
                                     <div class="col-md-6">
                                         <h2>
-                                            <%= p.title %>
+                                            <%= p.productId.title %>
                                         </h2>
-                                        <p><strong>Price:</strong> $<%= p.price * p.quantity %>
+                                        <p><strong>Price:</strong> $<%= p.productId.price * p.quantity %>
                                         </p>
                                         <p><strong>Quantity:</strong>
                                             <%= p.quantity %>
@@ -27,6 +28,7 @@
                                     </div>
                                     <div class="col-md-3 text-md-right">
                                         <form action="/delete-cart-item" method="POST">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                             <input type="hidden" value="<%= p._id %>" name="productId">
                                             <button class="btn btn-danger" type="submit">Remove</button>
                                         </form>
@@ -34,17 +36,11 @@
                                 </div>
                             </li>
                             <% }) %>
-                                <!-- <li class="list-group-item cart__item mb-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-6">
-                                            <p><strong>Total :</strong> $<%= total %>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li> -->
+            
                     </ul>
                     <div class="text-center mt-4">
                         <form action="/create-order" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <input type="hidden" value="<%=  %>" name="productId">
                             <!-- <a href="/checkout" class="btn btn-success btn-lg">Proceed to Checkout</a> -->
                             <button class="btn btn-success btn-lg" type="submit">Order Now!</button>

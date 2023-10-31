@@ -1,39 +1,41 @@
 const ProductModel = require('../models/productModel');
+const { validationResult } = require('express-validator');
 const mongodb = require('mongodb');
 
 const ObjectId = mongodb.ObjectId;
 
 exports.getCreateProduct = (req, res, next) => {
+
     res.render('admin/edit-product', {
         pageTitle: 'Create Product | eShop',
+        errorMsg: [],
         isEditing: false
     });
 }
-
-// exports.postAddProduct = (req, res, next) => {
-//     const title = req.body.title;
-//     const imageUrl = req.body.imageUrl;
-//     const description = req.body.description;
-//     const price = req.body.price;
-//     const product = new ProductModel(null, title, imageUrl, description, price);
-//     product.save().then(() => {
-//         res.redirect('/');
-//     }).catch(err => {
-//         console.log(err);
-//     });
-// }
 
 exports.postAddProduct = (req, res, next) => {
     const title = req.body.title;
     const imageUrl = req.body.imageUrl;
     const description = req.body.description;
     const price = req.body.price;
-    const userId = req.user._id;
-
-    const product = new ProductModel(title, price, description, imageUrl, null, userId);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).render('admin/edit-product', {
+            pageTitle: 'Create Product | eShop',
+            errorMsg: errors.array()[0].msg,
+            isEditing: false
+        });
+    }
+    const product = new ProductModel({
+        title: title,
+        price: price,
+        description: description,
+        imageUrl: imageUrl,
+        userId: req.session.user._id
+    });
     product.save()
         .then((result) => {
-            // console.log(result);
+            console.log(result);
             console.log("created product");
             res.redirect('/admin/products');
         }).catch(err => {
@@ -42,7 +44,7 @@ exports.postAddProduct = (req, res, next) => {
 }
 
 exports.getProducts = (req, res, next) => {
-    ProductModel.fetchAll().then(products => {
+    ProductModel.find({ userId: req.user._id }).then(products => {
         res.render('admin/products', {
             prods: products,
             pageTitle: 'Admin Products',
@@ -62,7 +64,6 @@ exports.getEditrProduct = (req, res, next) => {
     }
 
     const prodId = req.params.productId;
-
     ProductModel.findById(prodId)
         .then(product => {
             if (!product) {
@@ -84,16 +85,19 @@ exports.updateProduct = (req, res, next) => {
     const updatedImageUrl = req.body.imageUrl;
     const updatedPrice = req.body.price;
     const updatedDescription = req.body.description;
-    const product = new ProductModel(
-        updatedTitle,
-        updatedPrice,
-        updatedDescription,
-        updatedImageUrl,
-        prodId);
-    product
-        .save()
+
+    ProductModel.updateOne(
+        { _id: prodId },
+        {
+            $set: {
+                title: updatedTitle,
+                imageUrl: updatedImageUrl,
+                price: updatedPrice,
+                description: updatedDescription
+            }
+        })
         .then(result => {
-            console.log('Updated product!')
+            console.log(result)
             res.redirect('/admin/products');
         })
         .catch(err => {
@@ -103,7 +107,7 @@ exports.updateProduct = (req, res, next) => {
 
 exports.deleteProductById = (req, res, next) => {
     const prodId = req.body.productId;
-    ProductModel.deleteById(prodId)
+    ProductModel.findByIdAndRemove(prodId)
         .then(result => {
             console.log('Deleted');
             res.redirect('/admin/products');

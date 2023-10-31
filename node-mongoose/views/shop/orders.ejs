@@ -40,16 +40,16 @@
                                     </div>
                                     Order Details
                                     <ul class="list-group">
-                                        <% order.items.forEach(product=> { %>
+                                        <% order.products.forEach(product=> { %>
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-center">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>"
+                                                    <img src="<%= product.productsData.imageUrl %>" alt="<%= product.productsData.title %>"
                                                         class="img-thumbnail mr-3"
                                                         style="width: 80px; height: 80px; object-fit: cover;">
                                                     <div>
                                                         <h5>
-                                                            <%= product.title %>
+                                                            <%= product.productsData.title %>
                                                         </h5>
                                                         <p class="mb-0"><strong>Quantity:</strong>
                                                             <%= product.quantity %>
@@ -57,7 +57,7 @@
                                                     </div>
                                                 </div>
                                                 <p class="mb-0"><strong>Price:</strong>
-                                                    <%= (product.quantity * product.price) %>
+                                                    <%= (product.quantity * product.productsData.price) %>
                                                 </p>
 
                                             </li>

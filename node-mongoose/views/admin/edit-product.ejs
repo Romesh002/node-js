@@ -4,58 +4,73 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <div class="container">
-                <% if(isEditing){%>
-                    <h1>Edit Product</h1>
-                    <%}else{%>
-                        <h1>Create Product</h1>
-                        <%}%>
+                <%if(errorMsg.length>0) {%>
+                    <div class="container mt-5">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>
+                                <%=errorMsg%>
+                            </strong>
+                        </div>
+                    </div>
+                    <%}%>
+                        <% if(isEditing){%>
+                            <h1>Edit Product</h1>
+                            <%}else{%>
+                                <h1>Create Product</h1>
+                                <%}%>
 
-                            <form action="/admin/<% if(isEditing){%>update-product <%}else{%>create-product<%}%>"
-                                method="post">
+                                    <form
+                                        action="/admin/<% if(isEditing){%>update-product <%}else{%>create-product<%}%>"
+                                        method="post">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-                                <% if(isEditing){%> <input type="hidden" value="<%= product._id%>" name="productId"
-                                        class="form-control">
-                                    <%}%>
-                                        <div class="col-auto mb-2">
-                                            <label type="text">Product Image url:</label>
-                                            <% if(isEditing){%> <input type="text" value="<%= product.imageUrl%>"
-                                                    name="imageUrl" class="form-control">
-                                                <%}else{%><input type="text" name="imageUrl" class="form-control">
-                                                    <%}%>
-                                        </div>
-                                        <div class="col-auto mb-2">
-                                            <label type="text">Product title:</label>
-                                            <% if(isEditing){%> <input type="text" value="<%= product.title%>"
-                                                    name="title" class="form-control">
-                                                <%}else{%><input type="text" name="title" class="form-control">
-                                                    <%}%>
+                                        <% if(isEditing){%> <input type="hidden" value="<%= product._id%>"
+                                                name="productId" class="form-control">
+                                            <%}%>
 
-                                        </div>
-                                        <div class="col-auto mb-2">
-                                            <label type="text">Description:</label>
-                                            <% if(isEditing){%> <textarea name="description" class="form-control"
-                                                    cols="10" rows="5"><%= product.description%></textarea>
-                                                <%}else{%><textarea name="description" class="form-control" cols="10"
-                                                        rows="5"></textarea>
-                                                    <%}%>
+                                                <div class="col-auto mb-2">
+                                                    <label type="text">Product title:</label>
+                                                    <% if(isEditing){%> <input type="text" value="<%= product.title%>"
+                                                            name="title" class="form-control">
+                                                        <%}else{%><input type="text" name="title" class="form-control">
+                                                            <%}%>
 
-                                        </div>
-                                        <div class="col-auto mb-2">
-                                            <label type="text">Price:</label>
-                                            <% if(isEditing){%>
-                                                <input type="number" value="<%= product.price%>" min="0" step="0.01"
-                                                    name="price" class="form-control">
-                                                <%}else{%>
-                                                    <input type="number" value="0.00" min="0" step="0.01" name="price"
-                                                        class="form-control">
-                                                    <%}%>
-                                        </div>
-                                        <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary mb-3">
-                                                <% if(isEditing){%> Update <%}else{%>Create<%}%>
-                                            </button>
-                                        </div>
-                            </form>
+                                                </div>
+                                                <div class="col-auto mb-2">
+                                                    <label type="text">Product Image url:</label>
+                                                    <% if(isEditing){%> <input type="text"
+                                                            value="<%= product.imageUrl%>" name="imageUrl"
+                                                            class="form-control">
+                                                        <%}else{%><input type="text" name="imageUrl"
+                                                                class="form-control">
+                                                            <%}%>
+                                                </div>
+                                                <div class="col-auto mb-2">
+                                                    <label type="text">Description:</label>
+                                                    <% if(isEditing){%> <textarea name="description"
+                                                            class="form-control" cols="10"
+                                                            rows="5"><%= product.description%></textarea>
+                                                        <%}else{%><textarea name="description" class="form-control"
+                                                                cols="10" rows="5"></textarea>
+                                                            <%}%>
+
+                                                </div>
+                                                <div class="col-auto mb-2">
+                                                    <label type="text">Price:</label>
+                                                    <% if(isEditing){%>
+                                                        <input type="number" value="<%= product.price%>" min="0"
+                                                            step="0.01" name="price" class="form-control">
+                                                        <%}else{%>
+                                                            <input type="number" value="0.00" min="0" step="0.01"
+                                                                name="price" class="form-control">
+                                                            <%}%>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <button type="submit" class="btn btn-primary mb-3">
+                                                        <% if(isEditing){%> Update <%}else{%>Create<%}%>
+                                                    </button>
+                                                </div>
+                                    </form>
             </div>
-            
+
             <%- include('../includes/end.ejs') %>

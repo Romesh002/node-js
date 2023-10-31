@@ -1,57 +1,95 @@
 <%- include('../includes/head.ejs') %>
     <style>
-        .card-content {
-            width: 300px;
-            /* Adjust the card width as needed */
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .card {
+            border: none;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: #333;
+        }
+
+        .card-footer {
+            background: #f5f5f5;
+            border-top: none;
+        }
+
+        .btn-info {
+            background: #007bff;
+            border: none;
+        }
+
+        .btn-info:hover {
+            background: #0056b3;
+        }
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+
+        .no-products {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #888;
         }
     </style>
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
-            <main class="container">
-                <h1>Shop</h1>
-                <% if (prods.length> 0) { %>
-                    <div class="row">
-                        <% for(let product of prods) {%>
-                            <div class="col-sm-3">
-                                <div class="card card-content">
+            <main class="container mt-4">
+                <h1 class="page-title">Explore Our Products</h1>
+                <div class="row">
+
+                    <% if (prods.length> 0) { %>
+                        <% for (let product of prods) { %>
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <img src="<%= product.imageUrl %>" class="card-img-top" alt="<%= product.title %>">
                                     <div class="card-body">
-                                        <div class="card content">
-
-                                            <img src="<%= product.imageUrl %>" class="card-img-top"
-                                                alt="<%= product.title %>" width="90" height="260">
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    <%= product.title ?product.title : 'N/A' %>
-                                                </h5>
-                                                <p class="card-text">
-                                                    <%= product.price %>
-                                                </p>
-                                                <p class="card-text">
-                                                    <%= product.description %>
-                                                </p>
-                                                <div class="d-flex">
-                                                    <a href="/products/<%= product._id %>"
-                                                        class="btn btn-info btn-sm">Details</a>
-                                                    <%- include('../includes/add-to-cart.ejs',{product:product}) %>
-
-                                                </div>
-                                            </div>
+                                        <h5 class="card-title">
+                                            <%= product.title ? product.title : 'N/A' %>
+                                        </h5>
+                                        <p class="card-text card-content">
+                                            <%= product.description.slice(0, 50) %>...
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="text-muted">
+                                                <%= product.price %>
+                                            </span>
+                                            <a href="/products/<%= product._id %>"
+                                                class="btn btn-info btn-sm">Details</a>
+                                            <% if (isAuthenticated) { %>
+                                                <%- include('../includes/add-to-cart.ejs', { product: product }) %>
+                                                    <% } %>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <% }%>
-                    </div>
-
-                    <% }else { %>
-                        <h1>
-                            No Products Found
-                        </h1>
-                        <% }%>
+                            <% } %>
+                                <% } else { %>
+                                    <div class="col-12">
+                                        <h2 class="no-products">No Products Found</h2>
+                                    </div>
+                                    <% } %>
+                </div>
             </main>
             <%- include('../includes/end.ejs') %>
+    </body>
+
+    </html>

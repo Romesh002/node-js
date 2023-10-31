@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h4>OTP Verification</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/verify-otp" method="POST">
+                                <div class="form-group">
+                                    <label for="otp">Enter 6-digit OTP:</label>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="email" value="<%= email %>">
+                                    <input type="text" class="form-control" id="otp" name="otp" pattern="\d{6}"
+                                        maxlength="6" required>
+                                    <small class="form-text text-muted">Please enter a 6-digit OTP.</small>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Verify OTP</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    </html>

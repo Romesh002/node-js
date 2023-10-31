@@ -1,44 +1,49 @@
 <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">eShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogs">Blogs</a>
+                    </li>
+                    <% if(isAuthenticated) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cart">Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/orders">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/create-product">Add Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/products">Admin Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="/logout" method="post" class="d-inline">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                            </form>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
 
-</header>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">eShop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="main-header__item nav-link active" aria-current="page" href="/">Shop</a>
-                </li>
-                <li class="nav-item">
-                    <a class="main-header__item nav-link active" aria-current="page"
-                        href="/products">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="main-header__item nav-link active" aria-current="page"
-                        href="/cart">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="main-header__item nav-link active" aria-current="page"
-                        href="/orders">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="main-header__item nav-link active" aria-current="page"
-                        href="/admin/create-product">Add Product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="main-header__item nav-link active" aria-current="page"
-                        href="/admin/products">Admin Product</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                            <% } %>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>

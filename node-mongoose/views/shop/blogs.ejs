@@ -1,0 +1,140 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+
+            <!-- Hero Section -->
+            <div class="container-fluid bg-primary text-white text-center py-5">
+                <h1 class="display-4">Welcome to My Blog</h1>
+                <p class="lead">Exploring the World of Knowledge, Creativity, and Inspiration</p>
+            </div>
+
+            <!-- Blog Content -->
+            <div class="container mt-5">
+                <div class="row">
+                    <!-- Main Content -->
+                    <div class="col-md-8">
+                        <!-- Featured Post -->
+                        <div class="card mb-4">
+                            <img src="https://via.placeholder.com/750x300" class="card-img-top" alt="Featured Post">
+                            <div class="card-body">
+                                <h2 class="card-title">Exploring the Universe: A Journey Beyond the Stars</h2>
+                                <p class="card-text">Join us on an extraordinary adventure as we delve into the
+                                    mysteries of
+                                    the universe, from distant galaxies to the wonders of our own solar system.</p>
+                                <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Posted on October 22, 2023 by <a href="#">Admin</a>
+                            </div>
+                        </div>
+
+                        <!-- Recent Posts -->
+                        <h3 class="mb-4">Recent Posts</h3>
+                        <div class="card-deck">
+                            <!-- Recent Post 1 -->
+                            <div class="card">
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Recent Post 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">The Art of Mindfulness: Finding Peace in a Busy World</h5>
+                                    <p class="card-text">Discover the transformative power of mindfulness and learn
+                                        practical
+                                        techniques to bring calmness and clarity into your life.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Posted on October 20, 2023</small>
+                                </div>
+                            </div>
+                            <!-- Recent Post 2 -->
+                            <div class="card">
+                                <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Recent Post 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">The Culinary Explorer: A Journey Through Exotic Flavors</h5>
+                                    <p class="card-text">Embark on a gastronomic adventure and explore the diverse and
+                                        delicious
+                                        world of international cuisine.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Posted on October 18, 2023</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <h3 class="mt-5 mb-4">Comments</h3>
+                        <div class="media mb-4">
+                            <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle" alt="User Avatar">
+                            <div class="media-body">
+                                <h5 class="mt-0">User123</h5>
+                                This blog is amazing! I love the content and the design. Keep up the great work!
+                            </div>
+                        </div>
+                        <div class="media mb-4">
+                            <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle" alt="User Avatar">
+                            <div class="media-body">
+                                <h5 class="mt-0">AwesomeReader</h5>
+                                I'm truly inspired by the posts here. Looking forward to reading more. Well done!
+                            </div>
+                        </div>
+                        <!-- Add your comment form -->
+                        <!-- <h4>Add Your Comment</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <textarea class="form-control" id="comment" rows="3" placeholder="Your Comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form> -->
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="col-md-4">
+                        <!-- Search Form -->
+                        <div class="card mb-4">
+                            <h5 class="card-header">Search</h5>
+                            <div class="card-body">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for...">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">Go!</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Categories -->
+                        <div class="card mb-4">
+                            <h5 class="card-header">Categories</h5>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Science</a></li>
+                                    <li><a href="#">Travel</a></li>
+                                    <li><a href="#">Technology</a></li>
+                                    <li><a href="#">Food</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="card mb-4">
+                            <h5 class="card-header">Follow Us</h5>
+                            <div class="card-body">
+                                <div class="social-icons">
+                                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%- include('../includes/end.ejs') %>

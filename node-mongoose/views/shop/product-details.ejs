@@ -7,43 +7,44 @@
                 <div class="row">
                     <div class="col-md-6">
                         <!-- Product Image -->
-                        <img src="<%= product.imageUrl %>" class="img-fluid" alt="<%= product.title %>">
+                        <img src="<%= product.imageUrl %>" class="img-fluid rounded" alt="<%= product.title %>">
                     </div>
 
                     <div class="col-md-6">
-                        <div class="product-details d-flex justify-content-center">
+                        <div class="product-details pl-md-5">
+                            <div class="mb-4">
+                                <!-- Product Name -->
+                                <h1 class="font-weight-bold">
+                                    <%= product.title %>
+                                </h1>
+                            </div>
+
+                            <div class="mb-4">
+                                <!-- Product Detail -->
+                                <p class="text-muted">
+                                    <%= product.description %>
+                                </p>
+                            </div>
+
+                            <div class="mb-4">
+                                <!-- Product Price -->
+                                <h3 class="text-primary">Price: $<%= product.price %>
+                                </h3>
+                            </div>
+
                             <div>
-                                <div>
-                                    <!-- Product Name -->
-                                    <h1>
-                                        <%= product.title %>
-                                    </h1>
-                                </div>
-
-
-                                <div>
-                                    <!-- Product Detail -->
-                                    <p>
-                                        <%= product.description %>
-                                    </p>
-
-                                </div>
-
-                                <div>
-                                    <!-- Product Price -->
-                                    <h3>Price: $ <%= product.price %>
-                                    </h3>
-                                </div>
-                                <div>
-                                    <%- include('../includes/add-to-cart.ejs',{product:product}) %>
-                                </div>
-
+                                <% if(isAuthenticated) { %>
+                                    <!-- Add to Cart Button (if authenticated) -->
+                                    <%- include('../includes/add-to-cart.ejs', { product: product }) %>
+                                        <% } %>
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </main>
 
             <%- include('../includes/end.ejs') %>
+    </body>
+
+    </html>
